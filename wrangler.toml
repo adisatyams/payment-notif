@@ -9,8 +9,8 @@ crons = ["*/2 * * * *"]
 
 [[d1_databases]]
 binding = "DB"
-database_name = "payment_notif"
-database_id = "ISI_SETELAH_d1_create"
+database_name = "email-transaksibank-notif"
+database_id = "91a1e3b9-9785-4aa7-b2bd-2ccdbf17ff87"
 
 [vars]
 # Pengirim email yang dipercaya (substring dari alamat From, pisahkan koma)
