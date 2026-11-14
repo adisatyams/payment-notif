@@ -1,0 +1,4 @@
+API_KEY=ganti-dengan-token-acak-panjang
+WEBHOOK_SECRET=ganti-dengan-secret-acak
+IMAP_USER=email-penerima-notifikasi@gmail.com
+IMAP_PASS=app-password-16-karakter

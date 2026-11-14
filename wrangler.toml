@@ -1,0 +1,32 @@
+name = "payment-notif"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Cron: poll IMAP tiap 2 menit + housekeeping (expire tagihan, retry webhook)
+[triggers]
+crons = ["*/2 * * * *"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "payment_notif"
+database_id = "ISI_SETELAH_d1_create"
+
+[vars]
+# Pengirim email yang dipercaya (substring dari alamat From, pisahkan koma)
+ALLOWED_SENDERS = "bca.co.id,bankmandiri.co.id,bri.co.id,bni.co.id,jago.com,seabank.co.id"
+# Masa berlaku tagihan (menit) dan batas kode unik
+PAYMENT_TTL_MINUTES = "180"
+UNIQUE_CODE_MAX = "999"
+# IMAP (opsional; kosongkan IMAP_HOST untuk menonaktifkan)
+IMAP_HOST = "imap.gmail.com"
+IMAP_PORT = "993"
+IMAP_MAILBOX = "INBOX"
+# Webhook saat pembayaran terkonfirmasi (opsional, mis. n8n / ERP)
+WEBHOOK_URL = ""
+
+# Secrets (set dengan `wrangler secret put <NAMA>`):
+#   API_KEY          -> token untuk memanggil /api/*
+#   WEBHOOK_SECRET   -> kunci HMAC untuk tanda tangan webhook
+#   IMAP_USER        -> alamat email
+#   IMAP_PASS        -> app password
